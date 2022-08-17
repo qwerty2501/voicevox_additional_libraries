@@ -34,7 +34,7 @@ runs:
       run: |
         set -eux
         mkdir -p download/cudnn_tmp
-        if [[ "${{ runner.os }}" = "Ubuntu" ]]; then
+        if [[ "${{ runner.os }}" = "Linux" ]]; then
           curl -L "${{ matrix.cudnn_download_url }}" > download/cudnn.tar.xz
           tar -Jxvf download/cudnn.tar.xz -C download/cudnn_tmp
           mkdir -p download/cudnn_tmp/bin
@@ -65,7 +65,7 @@ runs:
         set -eux
         CUDA_ROOT=$( echo "${{ steps.cuda-toolkit.outputs.CUDA_PATH }}" | tr '\\' '/' )
         mkdir -p download/cuda/bin
-        if [[ "${{ runner.os }}" = "Ubuntu" ]]; then
+        if [[ "${{ runner.os }}" = "Linux" ]]; then
           cp -v "$CUDA_ROOT/lib64/"*.so* download/cuda/bin/
         elif [[ "${{ runner.os }}" = "Windows" ]];then
           cp -v "$CUDA_ROOT/bin/"*.dll download/cuda/bin/
